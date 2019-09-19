@@ -1,0 +1,26 @@
+<igx-carousel #carousel
+ style="background-color: orange;height: 100%">
+	<igx-slide style="height: 100%">
+		<h6>Slide 1</h6>
+		<igx-grid [autoGenerate]="true" [data]="gridData" [paging]="true" [perPage]="20" [displayDensity]="'compact'"
+    [height]="'calc(100% - 25px)'"
+    >
+		</igx-grid>
+	</igx-slide>
+	<igx-slide style="background-color: cyan; height: 100%;">
+		<h6>Slide 2</h6>
+    <div>
+		Some text here
+    </div>
+	</igx-slide>
+
+	<igx-slide style="height: 100%">
+		<h6>Slide 3</h6>
+		<igx-grid [autoGenerate]="true" [data]="gridData" [paging]="true" [perPage]="30" [displayDensity]="'compact'"
+    [height]="'calc(100% - 25px)'"
+    >
+		</igx-grid>
+	</igx-slide>
+
+</igx-carousel>
+<hr />
