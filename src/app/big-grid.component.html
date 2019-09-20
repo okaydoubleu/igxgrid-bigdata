@@ -1,0 +1,44 @@
+<div class="wrapper">
+	<header class="header" hidden>BIG GRID
+	</header>
+	<igx-grid #grid1 [autoGenerate]="true" [data]="hugeData | async" [paging]="false" [perPage]="20" [displayDensity]="'compact'"
+	[height]="'calc(100% - 4px)'" 
+	[width]="'calc(100% - 4px)'" 
+	[showToolbar]="true"
+	toolBarTitle="BIG GRID"
+	[columnHiding]="true"
+	[columnPinning]="true"
+	[exportExcel]="true"
+    [exportCsv]="true"
+    exportText="Export"
+    exportExcelText="Export to Excel"
+	exportCsvText="Export to CSV"
+	[evenRowCSS]="'grid-row-even'"
+	[oddRowCSS]="'grid-row-odd'"
+	[isLoading]="isLoading"
+>
+<ng-template igxToolbarCustomContent let-grid="grid" >
+	    <button igxButton="raised" igxRipple (click)="grid.clearSort()">
+				<igx-icon fontSet="material">clear</igx-icon>
+				Clear Sort
+			</button>
+			<button igxButton="raised" igxRipple (click)="fetchData()">
+					<igx-icon fontSet="material">refresh</igx-icon>
+					Reload
+				</button>
+			<button class="toggle-button" igxButton="raised" (click)="toggleDarkTheme()">
+				<igx-icon fontSet="material">invert_colors</igx-icon>
+				Switch Theme</button>
+	
+</ng-template>
+<igx-grid-toolbar>
+		<div style="display: float; float: left;">
+				<span>Rows: </span>
+					{{ rowCount }}
+					<span>Columns: </span>
+					{{ colCount }}
+		
+			</div>		
+</igx-grid-toolbar>
+</igx-grid>
+</div>

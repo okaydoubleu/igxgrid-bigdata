@@ -1,0 +1,37 @@
+@import "~igniteui-angular/lib/core/styles/themes/index";
+@import "./variables";
+
+div.wrapper {
+  height: 100%;
+}
+header {
+  height: 25px;
+}
+h1 {
+  font-family: Lato;
+}
+h6 {
+  height: 25px;
+  margin: 0px;
+}
+
+::ng-deep {
+    .dark-theme .grid-row-even {
+        color: $ifx-white ;
+        //background-color: $ifx-gray-dark !important;
+      }
+      .dark-theme .grid-row-odd {
+        color: $ifx-white;
+        background-color: $ifx-gray-dark !important;
+      }
+      .light-theme .grid-row-even {
+        color: #000;
+        background-color: #f3f3f3 !important;
+      }     
+      .light-theme .grid-row-odd {
+        color: $ifx-gray-dark;
+        background-color: $ifx-white !important;
+      }
+      
+}
+

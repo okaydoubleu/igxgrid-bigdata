@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BigGrid } from './big-grid.component';
 
-import { IgxCarouselModule, IgxGridModule } from 'igniteui-angular';
+import { IgxCarouselModule, IgxGridModule, IgxToggleModule, IgxRippleModule } from 'igniteui-angular';
+import { DataService } from './data.service';
 
 @NgModule({
-  imports: [BrowserModule, BrowserAnimationsModule, IgxCarouselModule, IgxGridModule],
-  declarations: [AppComponent, HelloComponent],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, BrowserAnimationsModule, IgxCarouselModule, IgxGridModule, IgxToggleModule, IgxRippleModule],
+  declarations: [AppComponent, HelloComponent, BigGrid],
+  bootstrap: [AppComponent],
+  providers: [DataService]
 })
 export class AppModule { }

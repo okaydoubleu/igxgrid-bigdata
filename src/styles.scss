@@ -1,6 +1,7 @@
 // CSS Reset, comment out if not required or using a different module
 // @import '~minireset.css/minireset';
 @import '~igniteui-angular/lib/core/styles/themes/index';
+@import "./app/_variables.scss";
 @include igx-core();
 @include igx-theme($default-palette);
 
@@ -9,7 +10,7 @@ html,
 body {
     height: 100%;
     overflow: hidden;
-    margin: 0;
+    margin: 4;
 }
 
 .sample-wrapper {
@@ -97,6 +98,10 @@ body {
 }
 
 $green-palette: igx-palette($primary: #09f,$secondary: #72da67, $surface: #333);
+$blue-palette: igx-palette($primary: #666,$secondary: #09f, $surface: #363);
+
+$ifx-dark-palette: igx-palette($primary: $primary-color, $secondary: $secondary-color, $surface: $surface-color);
+$ifx-light-palette: igx-palette($secondary: $primary-dark-color, $primary: $secondary-dark-color, $surface: $surface-dark-color);
 
 .fin-dark-theme {
     @include igx-dark-theme($green-palette);
@@ -110,5 +115,11 @@ $green-palette: igx-palette($primary: #09f,$secondary: #72da67, $surface: #333);
 .dark-theme {
     background: #333;
     color: #fff;
-    @include igx-dark-theme($green-palette);
+    @include igx-dark-theme($ifx-dark-palette);
+}
+
+.light-theme {
+    background: #fff;
+    color: #333;
+    @include igx-light-theme($ifx-light-palette);
 }
