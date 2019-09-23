@@ -1,11 +1,13 @@
 <div class="wrapper">
 	<header class="header" hidden>BIG GRID
 	</header>
-	<igx-grid #grid1 [autoGenerate]="true" [data]="hugeData | async" [paging]="false" [perPage]="20" [displayDensity]="'compact'"
+	<igx-grid #grid1 [autoGenerate]="true" [data]="hugeData | async" 
+	[paging]="false" 
+	[perPage]="20" 
+	[displayDensity]="'compact'"
 	[height]="'calc(100% - 4px)'" 
 	[width]="'calc(100% - 4px)'" 
 	[showToolbar]="true"
-	toolBarTitle="BIG GRID"
 	[columnHiding]="true"
 	[columnPinning]="true"
 	[exportExcel]="true"
@@ -15,14 +17,24 @@
 	exportCsvText="Export to CSV"
 	[evenRowCSS]="'grid-row-even'"
 	[oddRowCSS]="'grid-row-odd'"
+	title="BIG DATA"
+	[hideGroupedColumns]="false"
 	[isLoading]="isLoading"
 >
-<ng-template igxToolbarCustomContent let-grid="grid" >
-	    <button igxButton="raised" igxRipple (click)="grid.clearSort()">
+	<ng-template igxToolbarCustomContent let-grid="grid" >
+		<!-- <igx-switch [checked]="randomUpdate()" [ngIf]="false">
+				Live update
+		</igx-switch> -->
+	    <button igxButton="raised" igxRipple (click)="randomUpdate()" [disabled]="isLoading">
+				<igx-icon fontSet="material">charging</igx-icon>
+				LiveUpdate
+			</button>
+
+	    <button igxButton="raised" igxRipple (click)="grid.clearSort()" [disabled]="isLoading">
 				<igx-icon fontSet="material">clear</igx-icon>
 				Clear Sort
 			</button>
-			<button igxButton="raised" igxRipple (click)="fetchData()">
+			<button igxButton="raised" igxRipple (click)="updateData()" [disabled]="isLoading">
 					<igx-icon fontSet="material">refresh</igx-icon>
 					Reload
 				</button>

@@ -54,7 +54,8 @@ export class DataService {
                 eval(`row.col${c}='${this.makeBool()}'`);
               break;
             case colTypeDate:
-                eval(`row.col${c}='${this.makeDate()}'`);
+                let d = this.makeDate();
+                eval(`row.col${c}= new Date(${d.getFullYear()},${d.getMonth()},${d.getDate()},${d.getHours()},${d.getMinutes()},${d.getSeconds()},${d.getMilliseconds()}, )`);
               break;
           }
         }
@@ -88,6 +89,37 @@ export class DataService {
      d.setDate(d.getDate() + 10 - (Math.random() * 30));
     return d;
    }
+
+
+   updateItem(item: LooseType, colMax: number, numberToChange: number): LooseType {
+    for(let i = 0; i < numberToChange; i++) {
+      let y = Math.floor(Math.random() * colMax);
+      let x: any;
+      console.log(`x = item.col${y}`);
+      eval(`x = item.col${y}`);
+      let evalString: string;
+      console.log(typeof(x));
+      switch(typeof(x)) {
+        case 'number':
+            evalString = `item.col${y} = ${this.makeNumber(Math.floor(Math.random() * 1000))}`;
+         break;
+         case 'boolean':
+            evalString = `item.col${y} = ${this.makeBool()}`;
+         break;
+         case 'string':
+            evalString = `item.col${y} = '${this.makeString(Math.floor(Math.random() * 20))}'`;
+         break;
+         default:
+           let d = this.makeDate();
+           evalString = `item.col${y}= new Date(${d.getFullYear()},${d.getMonth()},${d.getDate()},${d.getHours()},${d.getMinutes()},${d.getSeconds()},${d.getMilliseconds()}, )`;
+         break;
+      }
+      console.log(evalString);
+      eval(evalString);
+    }
+    return item;
+   }
+
   }
   
   export interface LooseType {
@@ -95,6 +127,7 @@ export class DataService {
     updated?: Date,
     [key: string]: any
   }
+
 
   
 const colTypeNumber = 'number';

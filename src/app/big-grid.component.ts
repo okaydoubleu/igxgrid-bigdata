@@ -1,7 +1,7 @@
-import { Component, Input, HostBinding, AfterContentChecked, ViewChild } from '@angular/core';
-import { IgxGridComponent, IgxCarouselComponent } from 'igniteui-angular'
+import { Component, Input, HostBinding, ViewChild } from '@angular/core';
+import { IgxGridComponent } from 'igniteui-angular'
 import { Observable, from, pipe } from 'rxjs';
-import { delay, take } from 'rxjs/operators';
+import { delay } from 'rxjs/operators';
 import { DataService, LooseType } from "./data.service";
 
 @Component({
@@ -24,6 +24,8 @@ export class BigGrid {
   colCount = 5;
   cols: Array<string>;
   isLoading = true;
+  liveUpdateEnabled = false;
+  liveUpdateTimer = -1;
 
   constructor(private dataService: DataService) { }
 
@@ -45,6 +47,41 @@ export class BigGrid {
     
     this.timer = setTimeout(() => this.setGridColumnProps(this), 5000);
   }
+
+  toggleLiveUpdate() {
+    if(this.liveUpdateTimer === -1) {
+      this.liveUpdateTimer = 0;
+      this.liveUpdateEnabled = false;
+    }
+    else {
+      this.liveUpdateEnabled = !this.liveUpdateEnabled;
+
+      if(this.liveUpdateTimer) {
+        clearInterval(this.liveUpdateTimer);
+      }
+      if(this.liveUpdateEnabled) {
+
+        //this.randomUpdate();
+        setInterval(() => {this.randomUpdate()}, 100);
+      }  
+    }
+
+    return this.liveUpdateEnabled;
+  }
+
+  randomUpdate() {
+    let rn = Math.floor(Math.random() * this.grid.data.length);
+
+    let r = this.grid.data[rn] as LooseType;
+
+    console.log(r);
+    
+    r = this.dataService.updateItem(r, this.colCount, Math.floor(Math.random() * this.colCount));
+    
+    console.log(r);
+    
+  }
+  
 
   setGridColumnProps(_this: BigGrid) {
     console.log(_this.grid);
@@ -70,6 +107,19 @@ export class BigGrid {
     console.log('fetchData');
     this.hugeData.subscribe((d) => {
       //console.log(`fetching: ${d}`);
+    },
+    (e) => {console.log(`error: ${e}`)},
+    () => {console.log('Completed'); this.isLoading = false;}
+    );
+
+  }
+
+  updateData() {
+    console.log('updateData');
+    this.isLoading = true;
+    this.hugeData.subscribe((d) => {
+      this.grid.data = d;
+      this.isLoading = false;
     },
     (e) => {console.log(`error: ${e}`)},
     () => {console.log('Completed'); this.isLoading = false;}
