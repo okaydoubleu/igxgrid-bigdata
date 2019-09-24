@@ -33,5 +33,17 @@ h6 {
         background-color: $ifx-white !important;
       }
       
+      .light-theme .cellBoolTrue {
+        color: green;
+      }
+      .dark-theme .cellBoolTrue {
+        color: greenyellow;
+      }
+      .light-theme .cellBoolFalse {
+        color: orangered;
+      }
+      .dark-theme .cellBoolFalse {
+        color: orange;
+      }
 }
 

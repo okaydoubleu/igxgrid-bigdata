@@ -8,34 +8,41 @@ export class DataService {
   
     constructor() {}
 
-    public getData(colCount: number, rowCount: number) {    
+    public getData(colCount: number, rowCount: number, 
+        currCols?: Array<string>): Observable<Array<LooseType>> {
       return Observable.create(observer => {
-        observer.next(this.getFreshData(colCount, rowCount));
+        observer.next(this.getFreshData(colCount, rowCount, currCols));
         observer.complete();
       });
     }
    
-    private getFreshData(colCount: number, rowCount: number) {
+    private getFreshData(colCount: number, rowCount: number, currCols?: Array<string>) :Array<LooseType> {
       let data: Array<LooseType>;
       data = [];
+      console.log(currCols);
       let cols: Array<string>;
-      cols = [];
-      for (var c = 0; c < colCount; c++) {
-        switch (Math.floor(Math.random() * 6)) {
-          case 0:
-          case 1:
-            cols.push(colTypeNumber);
-            break;
-          case 2:
-          case 3:
-            cols.push(colTypeString);
-            break;
-          case 4:
-            cols.push(colTypeBool);
-            break;
-          case 5:
-            cols.push(colTypeDate);
-            break;
+      if (currCols && currCols.length > 0) {
+        cols = currCols;
+      }
+      else {
+        cols = [];
+        for (var c = 0; c < colCount; c++) {
+          switch (Math.floor(Math.random() * 6)) {
+            case 0:
+            case 1:
+              cols.push(colTypeNumber);
+              break;
+            case 2:
+            case 3:
+              cols.push(colTypeString);
+              break;
+            case 4:
+              cols.push(colTypeBool);
+              break;
+            case 5:
+              cols.push(colTypeDate);
+              break;
+          }
         }
       }
       for (var r = 0; r < rowCount; r++) {
@@ -51,7 +58,7 @@ export class DataService {
                 eval(`row.col${c}='${this.makeString(Math.floor(Math.random() * 20))}'`);
               break;
             case colTypeBool:
-                eval(`row.col${c}='${this.makeBool()}'`);
+                eval(`row.col${c}=${this.makeBool()}`);
               break;
             case colTypeDate:
                 let d = this.makeDate();
@@ -65,7 +72,7 @@ export class DataService {
       return data;
     }
   
-    static characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.*';
+    static characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-. *';
   
     makeString(length) {
       var result           = '';
@@ -95,10 +102,10 @@ export class DataService {
     for(let i = 0; i < numberToChange; i++) {
       let y = Math.floor(Math.random() * colMax);
       let x: any;
-      console.log(`x = item.col${y}`);
+      //console.log(`x = item.col${y}`);
       eval(`x = item.col${y}`);
       let evalString: string;
-      console.log(typeof(x));
+      //console.log(`value: ${x}\ttype: ${typeof(x)}`);
       switch(typeof(x)) {
         case 'number':
             evalString = `item.col${y} = ${this.makeNumber(Math.floor(Math.random() * 1000))}`;
@@ -114,9 +121,10 @@ export class DataService {
            evalString = `item.col${y}= new Date(${d.getFullYear()},${d.getMonth()},${d.getDate()},${d.getHours()},${d.getMinutes()},${d.getSeconds()},${d.getMilliseconds()}, )`;
          break;
       }
-      console.log(evalString);
+      //console.log(evalString);
       eval(evalString);
     }
+    item.updated = new Date();
     return item;
    }
 
@@ -132,6 +140,6 @@ export class DataService {
   
 const colTypeNumber = 'number';
 const colTypeString = 'string';
-const colTypeBool = 'bool';
+const colTypeBool = 'boolean';
 const colTypeDate = 'date';
   
