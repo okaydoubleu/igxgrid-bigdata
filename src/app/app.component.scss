@@ -1,0 +1,70 @@
+@import "~igniteui-angular/lib/core/styles/themes/index";
+@import "./variables";
+
+::ng-deep {
+  .dummy-class {
+    display: none;
+  }
+
+  .grid-options {
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0px 0px;
+    //background-color: $surface-color;
+
+    header {
+      vertical-align: middle;
+      margin: 0px 0;
+      padding: 10px 16px;
+      min-height: 45px !important;
+      background-color: #efe;
+
+      [logo] {
+        height: 24px;
+        width: 24px;
+        margin: 0 8px 4px -4px;
+        background-image: url('/assets/grid.png');
+        background-size: 24px 24px;
+      }
+    }
+
+    [igxButton] + [igxButton] {
+        margin-left: 8px;
+   }
+    .drop-down-button {
+        width: 92.6719px;
+    }
+    [slider] {
+      height: 20px;
+      padding-right: 20px;
+    }
+    [igxLabel] {
+      height: 20px;
+      padding-top: 0px;
+      margin-top: 0px;
+      padding-left: 10px;
+      vertical-align: top;
+    }
+
+    #bigData {
+      padding: 4px;
+      height: 100%;
+    }
+  }
+  
+  .dark-theme header {
+    background-color: #444;
+    [logo] {
+      background-blend-mode: hard-light;
+      background-color: #fff;
+    }
+}
+
+  
+}
+
+:host{
+  height: 100%;
+}
+

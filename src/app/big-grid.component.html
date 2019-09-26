@@ -27,8 +27,9 @@
 	<ng-template igxToolbarCustomContent let-grid="grid" >
 		<span style="font-size: 0.8em; padding: 0 10px; overflow: hidden;">
 			<span style="padding: 0 10px; overflow: hidden;">
+					i: {{ timerDuration }} ms |			
+					c: {{ colCount }} |		
 					r: {{ rowCount }}
-					c: {{ colCount }}			
 			</span>
 			Data fetched: {{ lastDataFetchTime? dateFormat(lastDataFetchTime, 'en-us', 'HH:mm:ss'): '?'  }}
 		</span>
@@ -46,13 +47,14 @@
 				LiveUpdate
 			</button>
 
-	    <button igxButton="raised" igxRipple (click)="grid.clearSort()" [disabled]="isLoading || grid1.sortingExpressions?.length === 0" title="Clear sortings">
+		<button igxButton="raised" igxRipple (click)="grid.clearSort()" [disabled]="isLoading || grid1.sortingExpressions?.length === 0" title="Clear sortings"
+		[hidden]="true">
 				<igx-icon fontSet="material">sort</igx-icon>
 			</button>
 			<button igxButton="raised" igxRipple (click)="reloadData()" [disabled]="isLoading || liveUpdateEnabled" title="Reload with new data">
 					<igx-icon fontSet="material">refresh</igx-icon>
 				</button>
-			<button class="toggle-button" igxButton="raised" (click)="toggleDarkTheme()" title="Toggle theme">
+			<button hidden class="toggle-button" igxButton="raised" (click)="toggleDarkTheme()" title="Toggle theme">
 				<igx-icon fontSet="material">invert_colors</igx-icon>
 			</button>
 	

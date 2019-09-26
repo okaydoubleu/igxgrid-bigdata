@@ -16,8 +16,8 @@ export class BigGrid {
   @Input('dataInjectInterval') dataInjectInterval_in: number;
   @ViewChild('grid1', { static: false }) private grid: IgxGridComponent;
 
-  @HostBinding("class")
-  public themesClass: THEME = THEME.LIGHT;
+  // @HostBinding("class")
+  // public themesClass: THEME = THEME.LIGHT;
 
   gridData: any;
   bigData: Array<LooseType> = [];
@@ -44,6 +44,7 @@ export class BigGrid {
     if (this.dataInjectInterval_in)
       this.timerDuration = this.dataInjectInterval_in;
 
+      console.log(`ngOnInit> colCount:${this.colCount} rowCount:${this.rowCount} timerDuration:${this.timerDuration} `)
     this.hugeData = this.dataService.getData(this.colCount, this.rowCount, this.cols).pipe(delay(2000));
     this.lastDataFetchTime = new Date();
     this.timer = setTimeout(() => this.setGridColumnProps(this), 100);
@@ -208,7 +209,7 @@ export class BigGrid {
   }
 
   toggleDarkTheme() {
-    this.themesClass = this.themesClass === THEME.LIGHT ? THEME.DARK : THEME.LIGHT;
+    //this.themesClass = this.themesClass === THEME.LIGHT ? THEME.DARK : THEME.LIGHT;
   }
 
   toggleLiveSort() {
@@ -287,11 +288,11 @@ timeFormat(value: Date, friendly: boolean) {
 }
 
 
-export enum THEME {
-  LIGHT = "light-theme",
-  DARK = "dark-theme",
-  BLACK = "black-theme"
-}
+// export enum THEME {
+//   LIGHT = "light-theme",
+//   DARK = "dark-theme",
+//   BLACK = "black-theme"
+// }
 
 
 
