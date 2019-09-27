@@ -38,7 +38,7 @@ export class BigGrid {
 
 
   constructor(private dataService: DataService) { 
-    this.usageMemory = window.performance.memory();
+    //this.usageMemory = window.performance.memory;
   }
 
   ngOnInit() {
