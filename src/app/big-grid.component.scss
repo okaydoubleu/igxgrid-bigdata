@@ -45,5 +45,9 @@ h6 {
       .dark-theme .cellBoolFalse {
         color: orange;
       }
+
+      .light-theme .grid-toolbar {
+        background-color: $surface-color;
+      }
 }
 

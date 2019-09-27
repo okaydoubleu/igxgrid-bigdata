@@ -22,22 +22,21 @@
 	[toolbarTitle]="'BIG DATA'"
 	[hideGroupedColumns]="false"
 	[isLoading]="isLoading"
-	
 >
-	<ng-template igxToolbarCustomContent let-grid="grid" >
-		<span style="font-size: 0.8em; padding: 0 10px; overflow: hidden;">
-			<span style="padding: 0 10px; overflow: hidden;">
-					i: {{ timerDuration }} ms |			
+	<ng-template igxToolbarCustomContent let-grid="grid" class="grid-toolbar" >
+		<span style="font-size: 0.8em; padding: 0 20px; overflow: hidden; vertical-align: middle;">
+			<span style="padding: 4px 10px; overflow: hidden; vertical-align: middle;">
 					c: {{ colCount }} |		
-					r: {{ rowCount }}
+					r: {{ rowCount }} |
+					i: {{ timerDuration }} ms 
 			</span>
 			Data fetched: {{ lastDataFetchTime? dateFormat(lastDataFetchTime, 'en-us', 'HH:mm:ss'): '?'  }}
 		</span>
 		<span>
-				<igx-switch [checked]="liveUpdateEnabled" (change)="toggleLiveUpdate()" [labelPosition]="'before'" style="padding-right: 10px" >
+				<igx-switch [checked]="liveUpdateEnabled" (change)="toggleLiveUpdate()" [labelPosition]="'before'" style="padding-right: 20px" >
 						Live update
 				</igx-switch>
-				<igx-switch [disabled]="!liveUpdateEnabled" [checked]="liveSort" (change)="toggleLiveSort()" [labelPosition]="'before'" style="padding-right: 10px" >
+				<igx-switch [disabled]="!liveUpdateEnabled" [checked]="liveSort" (change)="toggleLiveSort()" [labelPosition]="'before'" style="padding-right: 20px" >
 						Live sort
 				</igx-switch>
 				

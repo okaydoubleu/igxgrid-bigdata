@@ -32,9 +32,14 @@ export class BigGrid {
   timerDuration = 30;
   lastDataFetchTime: Date;
   
+  usageMemory: any;
+
+  
 
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) { 
+    this.usageMemory = window.performance.memory();
+  }
 
   ngOnInit() {
     if (this.colCount_in)
@@ -287,7 +292,11 @@ timeFormat(value: Date, friendly: boolean) {
 
 }
 
-
+export interface memory {
+  jsHeapSizeLimit: number,
+totalJSHeapSize: number,
+usedJSHeapSize: number
+}
 // export enum THEME {
 //   LIGHT = "light-theme",
 //   DARK = "dark-theme",

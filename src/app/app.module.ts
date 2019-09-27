@@ -7,7 +7,7 @@ import { HelloComponent } from './hello.component';
 import { BigGrid } from './big-grid.component';
 
 import { IgxCarouselModule, IgxGridModule, IgxToggleModule, 
-  IgxRippleModule, IgxSwitchModule, IgxSliderModule, IgxLayoutModule } from 'igniteui-angular';
+  IgxRippleModule, IgxSwitchModule, IgxSliderModule, IgxLayoutModule, IgxExcelExporterService } from 'igniteui-angular';
 import { DataService } from './data.service';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -36,7 +36,7 @@ const appRoutes: Routes = [
   ],
   declarations: [AppComponent, HelloComponent, BigGrid],
   bootstrap: [AppComponent],
-  providers: [DataService]
+  providers: [DataService, IgxExcelExporterService],
 })
 export class AppModule { }
 

@@ -46,6 +46,17 @@
       padding-left: 10px;
       vertical-align: top;
     }
+    [label] {
+      height: 20px;
+      margin-top: -2px;
+      margin-right: 4px;
+      padding: 0 20px 0 4px;
+      vertical-align: top;
+      white-space: nowrap;
+      font-size: 0.8em;
+      line-height: 0.95em;
+      text-align: right;
+    }
 
     #bigData {
       padding: 4px;

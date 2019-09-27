@@ -12,13 +12,20 @@ import { take, takeLast } from 'rxjs/operators';
 })
 export class AppComponent {
   name = 'Big-Data';
-  rowCount = 100;
-  colCount = 5;
-  liveUpdateInterval = 100;
+  rowCount = 20;
+  colCount = 10;
+  liveUpdateInterval = 200;
   rowCountActive = 100;
   colCountActive = 5;
   liveUpdateIntervalActive = 100;
   displayGrid = false;
+
+  readonly colCountMin = 1;
+  readonly colCountMax = 30;
+  readonly rowCountMin = 10;
+  readonly rowCountMax = 3000;
+  readonly intervalMin = 30;
+  readonly intervalMax = 1000;
   
 
   @HostBinding("class")
@@ -63,7 +70,7 @@ export class AppComponent {
 
 
     let navigationExtras: NavigationExtras = {
-      queryParams: { 'rows': this.rowCount, 'cols': this.colCount, 'intv': this.liveUpdateIntervalActive }
+      queryParams: { 'rows': this.rowCount, 'cols': this.colCount, 'intv': this.liveUpdateInterval }
     };
     const o = this.router.navigate(['big-data'], navigationExtras);
     o.then((ok) => {

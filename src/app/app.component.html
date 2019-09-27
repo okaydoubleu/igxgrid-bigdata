@@ -2,24 +2,30 @@
     igxLayout igxLayoutDir="column" igxLayoutWrap="nowrap">
 
     <header igxFlex igxFlexGrow="0"
-        style="display: grid; grid-template-columns: auto 2fr 1fr  2fr 1fr  2fr 1fr auto 1fr; grid-gap: 5px 5px; height: 30px;">
+        style="display: grid; grid-template-columns: auto 2fr auto  2fr auto  2fr auto auto 1fr; grid-gap: 5px 5px; height: 30px;">
 
         <div logo> </div>
-        <igx-slider slider id="sliderCol" [minValue]="5" [maxValue]="30" [step]="1" [continuous]="true" 
+        <igx-slider slider id="sliderCol" [minValue]="colCountMin" [maxValue]="colCountMax" [step]="1" [continuous]="true" 
         [(ngModel)]="colCount"
         
         >
         </igx-slider>
-        <div label>
-                Cols: {{colCount}}
+        <div label title="Number of Columns">
+                Cols <br />{{colCount}}
             <label igxLabel for="sliderCol" hidden>Cols: {{colCount}}</label>
         </div>
-        <igx-slider slider id="sliderRow" [minValue]="5" [maxValue]="3000" [step]="5" [continuous]="true"
+        <igx-slider slider id="sliderRow" [minValue]="rowCountMin" [maxValue]="rowCountMax" [step]="5" [continuous]="true"
         
             [(ngModel)]="rowCount"></igx-slider>
-        <div label>
-                Rows: {{rowCount}}
+        <div label title="Number of Rows">
+                Rows <br />{{rowCount}}
             <label igxLabel for="sliderRow" hidden>Rows: {{rowCount}} </label>
+        </div>
+        <igx-slider slider id="sliderInt" [minValue]="intervalMin" [maxValue]="intervalMax" [step]="10" [continuous]="true"        
+            [(ngModel)]="liveUpdateInterval"></igx-slider>
+        <div label title="Liveupdate rate">
+                Interval <br />{{liveUpdateInterval}} ms 
+            <label igxLabel for="sliderInt" hidden>Interval: {{liveUpdateInterval}} ms </label>
         </div>
         <div></div>
         <div style="display: flex ;align-items: flex-end; height: 28px; padding: 0; align-content: flex-end;">
